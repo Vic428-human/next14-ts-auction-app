@@ -1,5 +1,6 @@
 import { env } from "@/env";
 import * as schema from "./schema";
+// initialize the dirzzle library
 import { PostgresJsDatabase, drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
