@@ -4,7 +4,7 @@
 > 目前業界應該都是14居多，應該還沒升級到16，所以先練習這塊
 - nextjs 14版本
 - drizzle-kit : 資料庫的視覺編輯器
-- @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以考dotenv的引用這一環節)
+- @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以無需使用 dotenv 的引用這一環節)
 
 ### 專案製作過程中的筆記
 
