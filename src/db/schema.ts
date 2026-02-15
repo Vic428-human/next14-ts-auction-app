@@ -5,6 +5,7 @@
 import { pgTable, serial } from "drizzle-orm/pg-core"; 
 
 // define the table's columns type
+// for storing some information
 export const bids = pgTable('bb_bids', {
-	id: serial().primaryKey(),
+	id: serial("id").primaryKey(),
 });

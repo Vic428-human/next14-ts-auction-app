@@ -26,5 +26,5 @@
 
 ```
 // 本專案用的
-npx drizzle-kit push:pg --config=drizzle.config.ts
+npx drizzle-kit push --config=drizzle.config.ts
 ```
