@@ -1,0 +1,20 @@
+services:
+  next14-ts-aution-db:
+    # go to docker hub, and gave it to me latest image of postgres
+    image: postgres 
+    restart: always
+    container_name: next14-ts-aution-db
+    # and run it on this port 
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      PGDATA: /data/postgres
+      # and mounted to this volume
+      # inside the docker image self the docker container, there is file system you can mount to your own file system
+      # inside the container in /data/postgres
+    volumes:
+      - postgres:/data/postgres
+
+volumes:
+  postgres:
