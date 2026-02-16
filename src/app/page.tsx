@@ -5,6 +5,7 @@ import { bids as bidsSchema } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { revalidatePath } from "next/cache";
+import SignIn from "@/components/sign-in";
 
 export default async function Home() {
 
@@ -14,6 +15,7 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto py-12">
+      <SignIn />
       <form action={async (formData: FormData) => {
         'use server';
         // this is the drizzle library tool we can use
