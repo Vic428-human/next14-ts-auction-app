@@ -4,6 +4,7 @@ import { database } from "@/db/database";
 import { bids as bidsSchema } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { revalidatePath } from "next/cache";
 
 export default async function Home() {
 
@@ -18,6 +19,7 @@ export default async function Home() {
         // this is the drizzle library tool we can use
         // import bids that schema we have ex: src/db/schema.ts
         await database.insert(bidsSchema).values({});
+        revalidatePath('/'); 
       }}>
         {/* connect to the database using drizzle */}
         <Input name="bid" placeholder="Bid" />

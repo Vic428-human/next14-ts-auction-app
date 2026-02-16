@@ -6,10 +6,18 @@
 - drizzle-kit : 資料庫的視覺編輯器
 - @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以無需使用 dotenv 的引用這一環節)
 
-### 專案製作過程中的筆記
+### 專案製作過程中主要技術棧
 - Nextjs is a file base router
 - Dizzle ORM for easy read and write to database, doing nicer convension than sql
 - [Shadcn](https://ui.shadcn.com/docs/rtl/next) => /lib 、 components.json 
+
+### 專案製作過程中主要知識點
+- revalidatePath => Revalidation in Next.js is the process of purging the Data Cache and re-fetching the latest data. This ensures that your application displays the most up-to-date information.
+
+
+```
+
+```
 
 #### npx drizzle-kit push
 > lets you literally push your schema and subsequent schema changes directly to the database while omitting SQL files generation, 
