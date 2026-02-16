@@ -7,12 +7,12 @@ import { bids as bidsSchema } from "@/db/schema";
 
 export default async function Home() {
 
-  // fetch all the bids from the database
+  // fetch all the bids from the database for first render page
   const bids = await database.query.bids.findMany();
 
 
   return (
-    <main>
+    <main className="container mx-auto py-12">
       <form action={async (formData: FormData) => {
         'use server';
         // this is the drizzle library tool we can use
