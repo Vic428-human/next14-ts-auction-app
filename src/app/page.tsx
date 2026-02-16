@@ -1,9 +1,8 @@
 import Image from "next/image";
 // we're going to import database we have (from  db/database.ts)
 import { database } from "@/db/database";
-
 import { bids as bidsSchema } from "@/db/schema";
-
+// https://ui.shadcn.com/docs/rtl/next
 
 export default async function Home() {
 

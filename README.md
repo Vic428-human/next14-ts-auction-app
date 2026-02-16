@@ -8,7 +8,8 @@
 
 ### 專案製作過程中的筆記
 Nextjs is a file base router
-Dizzle ORM for easy read and write to database
+Dizzle ORM for easy read and write to database, doing nicer convension than sql
+Shadcn => /lib 、 components.json
 
 #### npx drizzle-kit push
 > lets you literally push your schema and subsequent schema changes directly to the database while omitting SQL files generation, 
