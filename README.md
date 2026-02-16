@@ -7,9 +7,9 @@
 - @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以無需使用 dotenv 的引用這一環節)
 
 ### 專案製作過程中的筆記
-Nextjs is a file base router
-Dizzle ORM for easy read and write to database, doing nicer convension than sql
-Shadcn => /lib 、 components.json
+- Nextjs is a file base router
+- Dizzle ORM for easy read and write to database, doing nicer convension than sql
+- [Shadcn](https://ui.shadcn.com/docs/rtl/next) => /lib 、 components.json 
 
 #### npx drizzle-kit push
 > lets you literally push your schema and subsequent schema changes directly to the database while omitting SQL files generation, 
