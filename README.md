@@ -3,7 +3,7 @@
 ## 專案說明
 > 目前業界應該都是14居多，應該還沒升級到16，所以先練習這塊
 - nextjs 14版本
-- drizzle-kit : 資料庫的視覺編輯器
+- [drizzle-kit](https://orm.drizzle.team/docs/drizzle-kit-studio) : 資料庫的視覺編輯器
 - @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以無需使用 dotenv 的引用這一環節)
 - Auth.js : 例如google第三方登入會用到，本質上就是後端工作，
 
@@ -26,7 +26,13 @@ Next.js
 ```
 
 ### 專案製作過程中主要知識點
-- revalidatePath => Revalidation in Next.js is the process of purging the Data Cache and re-fetching the latest data. This ensures that your application displays the most up-to-date information.
+
+
+#### npm run db:push 
+> take all the schema changes and applying the the database
+
+#### revalidatePath
+> Revalidation in Next.js is the process of purging the Data Cache and re-fetching the latest data. This ensures that your application displays the most up-to-date information.
 ```
 
 ```
