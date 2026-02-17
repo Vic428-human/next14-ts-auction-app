@@ -1,28 +1,22 @@
+import "server-only";
 import { env } from "@/env";
 import * as schema from "./schema";
-// initialize the dirzzle library
 import { PostgresJsDatabase, drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-// every time save the file will restart the connection of database
+type PgClient = ReturnType<typeof postgres>;
 
-declare global {
-  // eslint-disable-next-line no-var -- only var works here
-  var database: PostgresJsDatabase<typeof schema> | undefined;
-}
+const globalForDb = globalThis as typeof globalThis & {
+  pg?: PgClient;
+  database?: PostgresJsDatabase<typeof schema>;
+};
 
-let database: PostgresJsDatabase<typeof schema>;
-let pg: ReturnType<typeof postgres>;
+export const pg =
+  process.env.NODE_ENV === "production"
+    ? postgres(env.DATABASE_URL)
+    : globalForDb.pg ?? (globalForDb.pg = postgres(env.DATABASE_URL));
 
-if (env.NODE_ENV === "production") {
-  pg = postgres(env.DATABASE_URL);
-  database = drizzle(pg, { schema });
-} else {
-  if (!global.database) {
-    pg = postgres(env.DATABASE_URL);
-    global.database = drizzle(pg, { schema });
-  }
-  database = global.database;
-}
-
-export { database, pg };
+export const database =
+  process.env.NODE_ENV === "production"
+    ? drizzle(pg, { schema })
+    : globalForDb.database ?? (globalForDb.database = drizzle(pg, { schema }));

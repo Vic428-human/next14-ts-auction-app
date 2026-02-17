@@ -1,24 +1,16 @@
 // this is where you can find your table and database
 // we need to use drizzle to look what kind of database's properties on this table
 
-// https://authjs.dev/getting-started/adapters/drizzle
 import {
-  serial,
   boolean,
   timestamp,
   pgTable,
   text,
   primaryKey,
   integer,
-} from "drizzle-orm/pg-core";
-import postgres from "postgres";
-import { drizzle } from "drizzle-orm/postgres-js";
+  serial,
+} from "drizzle-orm/pg-core"; // https://authjs.dev/getting-started/adapters/drizzle
 import type { AdapterAccountType } from "@auth/core/adapters";
-
-const connectionString = "postgres://postgres:postgres@localhost:5432/drizzle";
-const pool = postgres(connectionString, { max: 1 });
-
-export const db = drizzle(pool);
 
 export const users = pgTable("user", {
   id: text("id")
@@ -75,29 +67,6 @@ export const verificationTokens = pgTable(
     {
       compositePk: primaryKey({
         columns: [verificationToken.identifier, verificationToken.token],
-      }),
-    },
-  ],
-);
-
-export const authenticators = pgTable(
-  "authenticator",
-  {
-    credentialID: text("credentialID").notNull().unique(),
-    userId: text("userId")
-      .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
-    providerAccountId: text("providerAccountId").notNull(),
-    credentialPublicKey: text("credentialPublicKey").notNull(),
-    counter: integer("counter").notNull(),
-    credentialDeviceType: text("credentialDeviceType").notNull(),
-    credentialBackedUp: boolean("credentialBackedUp").notNull(),
-    transports: text("transports"),
-  },
-  (authenticator) => [
-    {
-      compositePK: primaryKey({
-        columns: [authenticator.userId, authenticator.credentialID],
       }),
     },
   ],
