@@ -25,13 +25,8 @@ auth.js 搭配 DrizzleAdapter 的目的就是：
 
 ```
 為什麼這樣選？
-React SPA (Vite + React)
-首選 Auth0：用 @auth0/auth0-react SDK，自動 PKCE flow（前端安全取 token），後端 Go 只驗 JWT。無需自管 callback server，5 分鐘上線。
-為何非 Auth.js：Auth.js 需要 Node server 跑 handler，不適合純前端 + Go。
-​
-Next.js
-首選 Auth.js：原生支援 App Router/Middleware，server actions 直接用 auth() 拿 session。Google 等 80+ provider 零 config。
-優勢：全 server-side，session 存 DB/cookie，安全高。
+React SPA (Vite + React) : 首選 Auth0
+Next.js: 首選 Auth.js
 ```
 
 ### 專案製作過程中主要知識點
