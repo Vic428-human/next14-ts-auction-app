@@ -1,11 +1,13 @@
 
 
-## 專案說明
-> 目前業界應該都是14居多，應該還沒升級到16，所以先練習這塊
-- nextjs 14版本
+### 專案說明
+
+#### 專案製作過程中主要技術棧
+- nextjs 14 => a file base router
+- [Shadcn](https://ui.shadcn.com/docs/rtl/next) => /lib 、 components.json ，快速搭建UI組件
 - [drizzle-kit](https://orm.drizzle.team/docs/drizzle-kit-studio) : 資料庫的視覺編輯器
 - @t3-oss/env-nextjs : package simplifies environment variable management in Next.js by providing type-safe validation and runtime checks. (所以避開了直接使用 .env出現的失敗問題，原先是要透過 dotenv才能解決，有了這個，可以無需使用 dotenv 的引用這一環節)
-- Auth.js : google第三方登入會用到。
+- Auth.js : google第三方登入會用到，另外React用的是 Auth0。
 > NextAuth 本身並不直接知道如何把使用者、帳號、session 等資料存取到你的資料庫，所以
 > auth.ts 中會搭配 DrizzleAdapter 一起使用，因為選擇使用 Drizzle ORM 來管理資料庫 schema 與操作的關係。
 ```
@@ -18,21 +20,9 @@ auth.js 搭配 DrizzleAdapter 的目的就是：
 - postgres extension: 直接在IDE進行PG操作
 ![postgres extension](https://github.com/Vic428-human/next14-ts-auction-app/blob/main/postgres-explorer.png)
 
-### 專案製作過程中主要技術棧
-- Nextjs is a file base router
-- Dizzle ORM for easy read and write to database, doing nicer convension than sql
-- [Shadcn](https://ui.shadcn.com/docs/rtl/next) => /lib 、 components.json 
-- [Auth.js](https://authjs.dev/getting-started/installation?framework=Next.js)
-> 純 React SPA 做 Google 登入首選 managed service 如 Auth0（安全、省 code），Next.js 則優先 Auth.js（server-side 整合順手）。兩者 OAuth flow 核心都依賴 後端/server runtime 處理敏感邏輯。
-
-```
-為什麼這樣選？
-React SPA (Vite + React) : 首選 Auth0
-Next.js: 首選 Auth.js
-```
+---
 
 ### 專案製作過程中主要知識點
-
 
 #### npm run db:push 
 > take all the schema changes and applying the the database
