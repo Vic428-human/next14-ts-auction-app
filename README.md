@@ -9,7 +9,7 @@
 > NextAuth 本身並不直接知道如何把使用者、帳號、session 等資料存取到你的資料庫，所以
 > auth.ts 中會搭配 DrizzleAdapter 一起使用，因為選擇使用 Drizzle ORM 來管理資料庫 schema 與操作的關係。
 - postgres extension
-![postgres extension](https://github.com/Vic428-human/next14-ts-auction-app/blob/main/postgres-explorer.png)
+
 ```
 auth.js 搭配 DrizzleAdapter 的目的就是：
 讓 NextAuth 能透過 Drizzle ORM 存取和管理使用者相關的資料表。
@@ -17,6 +17,7 @@ auth.js 搭配 DrizzleAdapter 的目的就是：
 確保 schema 與 NextAuth 的需求一致。
 同時處理 Edge runtime 的限制，避免在不支援的環境中直接載入資料庫。
 ```
+![postgres extension: 直接在IDE進行PG操作](https://github.com/Vic428-human/next14-ts-auction-app/blob/main/postgres-explorer.png)
 
 ### 專案製作過程中主要技術棧
 - Nextjs is a file base router
