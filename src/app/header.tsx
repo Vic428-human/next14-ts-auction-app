@@ -16,8 +16,8 @@ export async function Header() {
                         auction.com
                     </Link>
                     <div className="flex items-center gap-8">
-                        <Link href="/" className="hover:underline flex items-center gap-1">
-                            All Auctions
+                        <Link href="/bids/create" className="hover:underline flex items-center gap-1">
+                           Aution an Item
                         </Link>
                     </div>
                 </div>

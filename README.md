@@ -1,4 +1,4 @@
-> 進度 010556
+> 進度 011222
 
 ### 專案說明
 > 製作此專案的目的主要是想學習Nextjs，以及了解怎麼製作競拍功能，等這個專案完成的差不多後，就會把核心功能移植過去 [交易所版本2](https://github.com/Vic428-human/marketplace-withoutClerk) 專案去使用。
@@ -23,16 +23,19 @@ auth.js 搭配 DrizzleAdapter 的目的就是：
 
 ---
 
-### 專案製作過程中主要知識點
+### You're about to add not-null startingPrice column without default value, which contains 7 items
+> 出現這個訊息，表示table會先被刪掉，才重新創一個，會導致舊的資料都消失
+```
+truncate table "bb_items" cascade;
+ALTER TABLE "bb_items" ADD COLUMN "startingPrice" integer NOT NULL;
+```
+
 
 #### npm run db:push 
 > take all the schema changes and applying the the database
 
 #### revalidatePath
 > Revalidation in Next.js is the process of purging the Data Cache and re-fetching the latest data. This ensures that your application displays the most up-to-date information.
-```
-
-```
 
 #### npx drizzle-kit push
 > lets you literally push your schema and subsequent schema changes directly to the database while omitting SQL files generation, 

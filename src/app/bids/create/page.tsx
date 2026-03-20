@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 import { createItemAction } from "./actions";
 
 export default async function CreatePage() {
-    const allItems = await database.query.items?.findMany();
+  const allItems = await database.query.items?.findMany();
   return (
     <main className="container mx-auto py-12">
       <h1 className="text-4xl font-bold mb-8">Post an Item (/bids/create)</h1>
@@ -15,7 +15,16 @@ export default async function CreatePage() {
         className="flex flex-col border p-8 rounded-xl space-y-4 max-w-lg mb-8"
         action={createItemAction}
       >
-        <Input className="max-w-lg" name="name" placeholder="Name your item" />
+        <Input 
+        required
+        className="max-w-lg" name="name" placeholder="Name your item" />
+        <Input
+        required
+          className="max-w-lg"
+          name="startingPrice"
+          type="number"
+          placeholder="what you start your auction at"
+        />
         <Button className="self-end" type="submit">
           Post item
         </Button>
