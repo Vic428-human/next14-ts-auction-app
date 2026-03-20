@@ -22,29 +22,6 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto py-12">
-      <h1 className="text-4xl font-bold mb-8">
-        Post an Item to Sell
-      </h1>
-      <form className="flex flex-col border p-8 rounded-xl space-y-4 max-w-lg mb-8" action={async (formData: FormData) => {
-        'use server';
-
-        const name = formData.get('name');
-        if (typeof name !== 'string' || !user?.id) {
-          throw new Error('輸入錯誤');
-        }
-
-        await database.insert(items).values({
-          name,
-          userId: user.id,
-        });
-        revalidatePath('/');
-      }}>
-        {/* connect to the database using drizzle */}
-        <Input className="max-w-lg" name="name" placeholder="Name your item" />
-        <Button className="self-end" type="submit">Post item</Button>
-      </form>
-
-
       <h2 className="text-2xl font-bold mb-8">Items for Sale</h2>
       <div className="grid grid-cols-4 gap-8">
         {allItems?.map((item) => (
