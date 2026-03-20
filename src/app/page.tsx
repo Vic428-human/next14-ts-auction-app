@@ -22,7 +22,10 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto py-12">
-      <form action={async (formData: FormData) => {
+      <h1 className="text-4xl font-bold">
+        Post an Item to Sell
+      </h1>
+      <form className="border p-8 rounded-xl space-y-4 max-w-lg" action={async (formData: FormData) => {
         'use server';
 
         const name = formData.get('name');
@@ -37,7 +40,7 @@ export default async function Home() {
         revalidatePath('/');
       }}>
         {/* connect to the database using drizzle */}
-        <Input name="name" placeholder="Name your item" />
+        <Input className="max-w-lg" name="name" placeholder="Name your item" />
         <Button type="submit">Post item</Button>
       </form>
 
