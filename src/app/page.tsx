@@ -22,10 +22,6 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto py-12">
-      {/* 應用程式 > cookkie 登入後看得到 token */}
-      {session ? <SignOut /> : <SignIn />}
-      {session?.user?.name}
-
       <form action={async (formData: FormData) => {
         'use server';
 
