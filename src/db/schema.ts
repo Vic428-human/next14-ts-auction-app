@@ -4,7 +4,6 @@ npx drizzle-kit push => studio 上就會建立下方出現的表 => https://loca
 2. 改db的名稱 
 */
 
-
 import {
   boolean,
   timestamp,
@@ -16,8 +15,6 @@ import {
 } from "drizzle-orm/pg-core"; // https://authjs.dev/getting-started/adapters/drizzle
 import type { AdapterAccountType } from "@auth/core/adapters";
 
-
-
 export const users = pgTable("bb_user", {
   id: text("id")
     .primaryKey()
@@ -27,7 +24,6 @@ export const users = pgTable("bb_user", {
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 });
-
 
 export const accounts = pgTable(
   "bb_account",
@@ -87,9 +83,7 @@ export const items = pgTable("bb_items", {
   id: serial("id").primaryKey(),
   userId: text("userId")
     .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),    
+    .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
-    startingPrice: integer("startingPrice").notNull().default(0),
-
+  startingPrice: integer("startingPrice").notNull().default(0),
 });
-
