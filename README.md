@@ -1,4 +1,5 @@
 > 進度 011222
+> 012222 是在講 cloudinary R2 暫時先跳過，因為不在這次學習範圍
 
 ### 專案說明
 > 製作此專案的目的主要是想學習Nextjs，以及了解怎麼製作競拍功能，等這個專案完成的差不多後，就會把核心功能移植過去 [交易所版本2](https://github.com/Vic428-human/marketplace-withoutClerk) 專案去使用。

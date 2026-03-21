@@ -26,7 +26,8 @@ export default async function Home() {
       <div className="grid grid-cols-4 gap-8">
         {allItems?.map((item) => (
           <div key={item.id} className="border p-8 rounded-xl">
-            <p>{item.name}</p>
+            {item.name}
+            starting price: ${item.startingPrice / 100}
           </div>
         ))}
       </div>
