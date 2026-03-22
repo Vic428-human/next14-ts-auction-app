@@ -87,3 +87,6 @@ export const items = pgTable("bb_items", {
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
 });
+
+// use same data structure in typescript
+export type Item = typeof items.$inferSelect;

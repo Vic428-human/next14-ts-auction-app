@@ -8,28 +8,32 @@ import { revalidatePath } from "next/cache";
 import SignIn from "@/components/sign-in";
 import SignOut from "@/components/signout-button";
 import { auth } from "@/auth";
+import { ItemCard } from "./item-card";
+import { ItemList } from "@/components/ItemList";
 
-export default async function Home() {
+export default async function Home() { // async => server Component
 
   // 查詢 pgTable 中的資料
   const allItems = await database.query.items?.findMany();
 
   const session = await auth()
 
-  if (!session) return null;
-  const user = session.user
-  if (!user) return null;
+  if (!session || !session.user) {
+    return (
+      <main className="container mx-auto py-12">
+        <SignIn />
+      </main>
+    );
+  }
 
   return (
     <main className="container mx-auto py-12">
       <h2 className="text-2xl font-bold mb-8">Items for Sale</h2>
-      <div className="grid grid-cols-4 gap-8">
-        {allItems?.map((item) => (
-          <div key={item.id} className="border p-8 rounded-xl">
-            {item.name}
-            starting price: ${item.startingPrice / 100}
-          </div>
-        ))}
+      <div className="">
+        {/* A component was suspended by an uncached promise. Creating promises inside a Client Component or hook is not yet supported, except via a Suspense-compatible library or framework. */}
+        {/* 某個 Client Component 嘗試直接 await 一個 Promise */}
+        {/* 當 Server Component 把 Promise 傳到 Client Component，React 會嘗試 suspend，但因為不是透過 Suspense-compatible library，就會報這個錯。 */}
+        <ItemList items={allItems} />
       </div>
 
     </main>
