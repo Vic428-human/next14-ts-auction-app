@@ -11,16 +11,13 @@ import { auth } from "@/auth";
 
 import { ItemList } from "@/components/ItemList";
 import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
 
 export default async function MyAuctionPage() {
   // async => server Component
   const session = await auth();
   if (!session || !session.user) {
-    return (
-      <main className="container mx-auto py-12">
-        <SignIn />
-      </main>
-    );
+      redirect("/");
   }
 
   // 查詢 pgTable 中的資料

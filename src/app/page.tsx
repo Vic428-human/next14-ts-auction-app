@@ -10,32 +10,35 @@ import SignOut from "@/components/signout-button";
 import { auth } from "@/auth";
 import { ItemCard } from "./item-card";
 import { ItemList } from "@/components/ItemList";
+import { redirect } from "next/navigation";
+import { Session } from "next-auth";
 
-export default async function Home() { // async => server Component
+type AuthGateProps = {
+  session: Session | null;
+  children: React.ReactNode;
+};
+
+function AuthGate({ session, children }: AuthGateProps) {
+  if (!session?.user) {
+    return <></>;
+  }
+  return children;
+}
+
+export default async function Home() {
+  // async => server Component
 
   // 查詢 pgTable 中的資料
   const allItems = await database.query.items?.findMany();
 
-  const session = await auth()
-
-  if (!session || !session.user) {
-    return (
-      <main className="container mx-auto py-12">
-        <SignIn />
-      </main>
-    );
-  }
+  const session = await auth();
 
   return (
-    <main className="container mx-auto py-12">
-      <h2 className="text-2xl font-bold mb-8">Items for Sale</h2>
-      <div className="">
-        {/* A component was suspended by an uncached promise. Creating promises inside a Client Component or hook is not yet supported, except via a Suspense-compatible library or framework. */}
-        {/* 某個 Client Component 嘗試直接 await 一個 Promise */}
-        {/* 當 Server Component 把 Promise 傳到 Client Component，React 會嘗試 suspend，但因為不是透過 Suspense-compatible library，就會報這個錯。 */}
+    <AuthGate session={session}>
+      <main className="container mx-auto py-12">
+        <h2 className="text-2xl font-bold mb-8">Items for Sale</h2>
         <ItemList items={allItems} />
-      </div>
-
-    </main>
+      </main>
+    </AuthGate>
   );
 }
