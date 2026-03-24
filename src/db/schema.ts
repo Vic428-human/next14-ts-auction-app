@@ -15,6 +15,7 @@ import {
 } from "drizzle-orm/pg-core"; // https://authjs.dev/getting-started/adapters/drizzle
 import type { AdapterAccountType } from "@auth/core/adapters";
 
+// users => 表名稱
 export const users = pgTable("bb_user", {
   id: text("id")
     .primaryKey()
