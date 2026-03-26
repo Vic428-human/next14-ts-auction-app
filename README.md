@@ -30,7 +30,8 @@ auth.js 搭配 DrizzleAdapter 的目的就是：
 truncate table "bb_items" cascade;
 ALTER TABLE "bb_items" ADD COLUMN "startingPrice" integer NOT NULL;
 ```
-
+#### npx drizzle-kit studio
+> 開啟 studio
 
 #### npm run db:push 
 > take all the schema changes and applying the the database

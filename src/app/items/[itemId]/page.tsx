@@ -1,10 +1,27 @@
-"use client";
+import { database } from "@/db/database";
+import { items } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
+export default async function ItemPage({ params }: { params: Promise<{ itemId: string }> }) {
+  // await params，解開 Promise
+  const { itemId } = await params;
 
-export default function ItemPage() {
-    return (
-        <main className="container mx-auto py-12 space-y-8">
-            <h1 className="text-4xl font-bold">Item</h1>
-        </main>
-    );
+  const id = Number(itemId);
+  if (Number.isNaN(id)) {
+    return <h1>Invalid item ID</h1>;
+  }
+
+  const item = await database.query.items.findFirst({
+    where: eq(items.id, id),
+  });
+
+  if (!item) {
+    return <h1>Item not found</h1>;
+  }
+
+  return (
+    <main className="container mx-auto py-12 space-y-8">
+      <h1 className="text-4xl font-bold">{item.name}</h1>
+    </main>
+  );
 }
