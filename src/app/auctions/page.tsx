@@ -30,7 +30,7 @@ export default async function MyAuctionPage() {
 
   return (
     <main className="container mx-auto py-12">
-      <h2 className="text-2xl font-bold mb-8">My Auction</h2>
+      <h2 className="text-2xl font-bold mb-8">Your current Auctions</h2>
       <div className="">
         {!hasItems ? <ItemList items={allItems} /> : <EmptyState />}
       </div>
