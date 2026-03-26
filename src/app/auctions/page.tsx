@@ -29,7 +29,7 @@ export default async function MyAuctionPage() {
   const hasItems = allItems.length > 0;
 
   return (
-    <main className="container mx-auto py-12">
+    <main className="py-12">
       <h2 className="text-2xl font-bold mb-8">Your current Auctions</h2>
       <div className="">
         {!hasItems ? <ItemList items={allItems} /> : <EmptyState />}

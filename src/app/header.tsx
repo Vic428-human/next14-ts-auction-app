@@ -8,7 +8,7 @@ import Image from "next/image";
 export async function Header() {
     const session = await auth()
     return (
-        <div className="bg-gray-200 py-2">
+        <div className="bg-gray-200 py-2 container mx-auto">
             <div className="container flex justify-between items-center">
                 <div className="flex item-center gap-12">
                     <Link href="/" className="hover:underline flex items-center gap-1">

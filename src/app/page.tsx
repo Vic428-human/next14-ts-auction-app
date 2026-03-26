@@ -25,7 +25,7 @@ function AuthGate({ session, children }: AuthGateProps) {
   return children;
 }
 
-export default async function Home() {
+export default async function HomePage() {
   // async => server Component
 
   // 查詢 pgTable 中的資料
@@ -35,7 +35,7 @@ export default async function Home() {
 
   return (
     <AuthGate session={session}>
-      <main className="container mx-auto py-12">
+      <main className="space-y-8">
         <h2 className="text-2xl font-bold mb-8">Items for Sale</h2>
         <ItemList items={allItems} />
       </main>
