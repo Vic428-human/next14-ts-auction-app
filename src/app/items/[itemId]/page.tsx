@@ -5,6 +5,8 @@ import { pageTitleStyles } from "@/styles";
 import { eq } from "drizzle-orm";
 import Link from "next/link";
 import Image from "next/image";
+import { time } from "console";
+import { timestamp } from "drizzle-orm/gel-core";
 
 export default async function ItemPage({
   params,
@@ -39,12 +41,50 @@ export default async function ItemPage({
     );
   }
 
+  const bids = [
+    {
+      id: 1,
+      amount: 100,
+      userName: "John Doe",
+      timestamp: new Date(),
+    },
+    {
+      id: 2,
+      amount: 200,
+      userName: "Jane Doe",
+      timestamp: new Date(),
+    },
+  ];
+
   return (
     <main className="space-y-8">
-      <h1 className={pageTitleStyles}>
-        <span className="font-normal">Auction for</span> {item.name}
-      </h1>
-      <div>Starting Price of ${item.startingPrice / 100}</div>
+      <div className="flex gap-8">
+        {/* left side */}
+        <div>
+          <h1 className={pageTitleStyles}>
+            <span className="font-normal">Auction for</span> {item.name}
+          </h1>
+          <div className="text-xl">
+            Starting Price of{" "}
+            <span className="font-bold">${item.startingPrice / 100}</span>
+          </div>
+        </div>
+        {/* right side */}
+        <div>
+          <h2>Current Bids</h2>
+          <ul>
+            {bids.map((bid) => (
+              <li key={bid.id}>
+                <div>
+                  <span className="font-bold">${bid.amount}</span> by{" "}
+                  <span className="font-bold">{bid.userName}</span>{" "}
+                  <span className="text-xs">{bid.timestamp.toISOString()}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </main>
   );
 }
