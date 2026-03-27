@@ -21,7 +21,7 @@ export async function Header() {
                         </Link>
 
 
-                        <Link href="/bids/create" className="hover:underline flex items-center gap-1">
+                        <Link href="/items/create" className="hover:underline flex items-center gap-1">
                            Create an Aution
                         </Link>
 
