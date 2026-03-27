@@ -1,6 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { database } from "@/db/database";
 import { items } from "@/db/schema";
+import { pageTitleStyles } from "@/styles";
 import { eq } from "drizzle-orm";
+import Link from "next/link";
+import Image from "next/image";
 
 export default async function ItemPage({
   params,
@@ -20,15 +24,24 @@ export default async function ItemPage({
   });
 
   if (!item) {
-    return;
-    <div>
-      <h1 className="text-4xl font-bold">Item not found</h1>;
-    </div>;
+    return (
+      <div>
+        <Image src="/package.svg" alt="package" width={200} height={200} />        
+        <h1 className={pageTitleStyles}>Item not found</h1>
+        <p>
+          The item you&apos;re trying to view is invalid. Pleace goback and
+          search for a diffferent auction item.
+        </p>
+        <Button asChild>
+          <Link href={`/auctions`}>View Auction</Link>
+        </Button>
+      </div>
+    );
   }
 
   return (
     <main className="space-y-8">
-      <h1 className="text-4xl font-bold">{item.name}</h1>
+      <h1 className={pageTitleStyles}>{item.name}</h1>
     </main>
   );
 }

@@ -5,13 +5,14 @@ import { items } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createItemAction } from "./actions";
+import { pageTitleStyles } from "@/styles";
 
 // A component was suspended by an uncached promise，所以這邊不要用 async (不可建立 Promise)
 // 因為 "use client" 宣告的時候，Client Component render 階段建立 Promise ，會違反規則。
 export default function CreatePage() {
   return (
     <main className="container mx-auto py-12">
-      <h1 className="text-4xl font-bold mb-8">Post an Item (/bids/create)</h1>
+      <h1 className={pageTitleStyles}>Post an Item (/bids/create)</h1>
       <form
         className="flex flex-col border p-8 rounded-xl space-y-4 max-w-lg mb-8"
         onSubmit={async (e) => {

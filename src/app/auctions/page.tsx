@@ -13,6 +13,7 @@ import { ItemList } from "@/components/ItemList";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { EmptyState } from "./emptystate";
+import { pageTitleStyles } from "@/styles";
 
 export default async function MyAuctionPage() {
   // async => server Component
@@ -30,7 +31,7 @@ export default async function MyAuctionPage() {
 
   return (
     <main className="py-12">
-      <h2 className="text-2xl font-bold mb-8">Your current Auctions</h2>
+      <h2 className={pageTitleStyles}>Your current Auctions</h2>
       <div className="">
         {!hasItems ? <ItemList items={allItems} /> : <EmptyState />}
       </div>
