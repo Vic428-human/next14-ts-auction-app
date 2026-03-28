@@ -87,6 +87,7 @@ export const items = pgTable("bb_items", {
     .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
+  bidInterval: integer("bidInterval").notNull().default(100),
 });
 
 // use same data structure in typescript

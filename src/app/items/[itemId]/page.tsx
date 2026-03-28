@@ -7,6 +7,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { time } from "console";
 import { timestamp } from "drizzle-orm/gel-core";
+import { formatDistance, subDays } from "date-fns";
+
+// 計算幾天前
+function formateTimestamp(timestamp: Date) {
+  return formatDistance(timestamp, new Date(), { addSuffix: true });
+}
 
 export default async function ItemPage({
   params,
@@ -41,28 +47,30 @@ export default async function ItemPage({
     );
   }
 
-  const bids = [
-    {
-      id: 1,
-      amount: 100,
-      userName: "John Doe",
-      timestamp: new Date(),
-    },
-    {
-      id: 2,
-      amount: 200,
-      userName: "Jane Doe",
-      timestamp: new Date(),
-    },
-  ];
+  // const bids = [
+  //   {
+  //     id: 1,
+  //     amount: 100,
+  //     userName: "John Doe",
+  //     timestamp: new Date(),
+  //   },
+  //   {
+  //     id: 2,
+  //     amount: 200,
+  //     userName: "Jane Doe",
+  //     timestamp: new Date(),
+  //   },
+  // ];
+  const bids = [];
 
+  const hasBids = bids.length > 0;
   return (
     <main className="space-y-8">
       <div className="flex gap-8">
         {/* left side */}
-        <div>
+        <div className="flex flex-col gap-6">
           <h1 className={pageTitleStyles}>
-            <span className="font-normal">Auction for</span> {item.name}
+            <span className="text-3xl font-bold">Auction for</span> {item.name}
           </h1>
           <div className="text-xl">
             Starting Price of{" "}
@@ -70,19 +78,35 @@ export default async function ItemPage({
           </div>
         </div>
         {/* right side */}
-        <div>
-          <h2>Current Bids</h2>
-          <ul>
-            {bids.map((bid) => (
-              <li key={bid.id}>
-                <div>
-                  <span className="font-bold">${bid.amount}</span> by{" "}
-                  <span className="font-bold">{bid.userName}</span>{" "}
-                  <span className="text-xs">{bid.timestamp.toISOString()}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <div className="space-y-4 flex-1">
+          <h2 className="text-2xl font-bold">Current Bids</h2>
+          {hasBids ? (
+            <ul className="space-y-4">
+              {bids.map((bid) => (
+                <li key={bid.id} className="bg-gray-100 rounded-xl p-8">
+                  <div className="flex gap-4">
+                    <div>
+                      <span className="font-bold">${bid.amount}</span> by{" "}
+                      <span className="font-bold">{bid.userName}</span>{" "}
+                    </div>
+
+                    <div className="">{formateTimestamp(bid.timestamp)}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="flex flex-col items-center gap-8 bg-gray-100 rounded-xl p-12">
+              <Image
+                src="/package.svg"
+                alt="package"
+                width={200}
+                height={200}
+              />
+              No bids yet
+              <Button>Place a bid</Button>
+            </div>
+          )}
         </div>
       </div>
     </main>
