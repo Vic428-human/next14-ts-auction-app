@@ -72,9 +72,14 @@ export default async function ItemPage({
           <h1 className={pageTitleStyles}>
             <span className="text-3xl font-bold">Auction for</span> {item.name}
           </h1>
-          <div className="text-xl">
-            Starting Price of{" "}
-            <span className="font-bold">${item.startingPrice / 100}</span>
+          <div className="text-xl space-y-4">
+            <div>
+              Starting Price of{" "}
+              <span className="font-bold">${item.startingPrice / 100}</span>
+            </div>
+            <div>
+              Bid Interval <span className="font-bold">{item.bidInterval}</span>
+            </div>
           </div>
         </div>
         {/* right side */}
